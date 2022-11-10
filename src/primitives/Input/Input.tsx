@@ -4,6 +4,7 @@ import { useField } from '@hooks/useField';
 import { FormContext } from '@primitives/Form/FormContext';
 import { useSetRecoilState } from 'recoil';
 import { formFieldsState } from 'src/shared/state';
+import { InputError } from './InputError';
 
 
 export type InputProps = Omit<TextFieldProps, 'variant' | 'withTouched' | 'attributeName' | 'fullWidth'> & {
@@ -17,7 +18,7 @@ export type InputProps = Omit<TextFieldProps, 'variant' | 'withTouched' | 'attri
 export const Input: FC<InputProps> = ({ name, label }) => {
   const formKey = useContext(FormContext);
   const setFields = useSetRecoilState(formFieldsState(formKey));
-  const { value, updateField } = useField(name);
+  const { value, updateField, error } = useField(name);
 
   useEffect(() => {
     setFields((f) => ({
@@ -26,5 +27,10 @@ export const Input: FC<InputProps> = ({ name, label }) => {
     }))
   }, []);
 
-  return <TextField label={label} value={value} onChange={updateField} fullWidth />
+  return (
+    <div>
+      <TextField label={label} value={value} onChange={updateField} fullWidth />
+      {!!error && <InputError inputName={name} />}
+    </div>
+  )
 }
