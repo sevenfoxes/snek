@@ -1,5 +1,18 @@
-import { atomFamily, selectorFamily } from "recoil";
+import { atom, atomFamily, selectorFamily } from "recoil";
 import { formFieldsState } from "./formState";
+import { string } from 'yup';
+
+export const fieldValidators = atom({
+  key: 'fieldsValidationState',
+  default: {
+    firstName: string().max(50).required('firstName is required')
+  }
+});
+
+export const fieldValidationSelector = selectorFamily({
+  key: 'fieldValidationSelector',
+  get: (fieldName: string) => ({ get }) => get(fieldValidators)[fieldName]
+});
 
 export const fieldErrorState = atomFamily({
   key: 'fieldErrorState',
@@ -18,23 +31,18 @@ export const fieldState = atomFamily({
 
 export const fieldSelector = selectorFamily({
   key: 'fieldSelector',
-  get: id => ({ get }) => {
+  get: (id: string) => ({ get }) => {
     const value = get(fieldState(id));
     const userValue = get(fieldUserState(id));
     const error = get(fieldErrorState(id));
-
-    // console.log({
-    //   value: !!userValue ? userValue : value,
-    //   userValue,
-    //   error,
-    //   charCount: !!userValue ? userValue.length : value.length
-    // });
+    const validation = get(fieldValidationSelector(id))
 
     return {
       value: !!userValue ? userValue : value,
       userValue,
       error,
-      charCount: !!userValue ? userValue.length : value.length
+      charCount: !!userValue ? userValue.length : value.length,
+      validation
     }
   },
   set: (key: string) => ({ set, get }, { field, formKey }: any) => {
