@@ -12,7 +12,7 @@ export const fieldUserState = atomFamily({
 
 export const fieldState = atomFamily({
   key: 'fieldState',
-  default: 'h'
+  default: ''
 });
 
 export const fieldSelector = selectorFamily({
