@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@types/*": ["src/shared/types/*"],
+      "@types": ["src/shared/types"],
+      "@utils/*": ["src/shared/utils/*"],
+      "@utils": ["src/shared/utils"],
+      "@pages/*": ["src/pages/*"],
+      "@pages": ["src/pages"],
+      "@primitives/*": ["src/primitives/*"],
+      "@primitives": ["src/primitives"],
+      "@components/*": ["src/components/*"],
+      "@components": ["src/components"],
+      "@services/*": ["src/shared/services/*"],
+      "@services": ["src/shared/services"],
+      "@core/*": ["src/core/*"],
+      "@core": ["src/core"],
+      "@hooks/*": ["src/shared/hooks/*"],
+      "@hooks": ["src/shared/hooks"],
+      "@icons/*": ["src/shared/icons/*"],
+      "@icons": ["src/shared/icons"],
+      "@context/*": ["src/shared/context/*"],
+      "@context": ["src/shared/context"]
+    }
+  }
+}

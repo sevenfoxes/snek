@@ -1,0 +1,12 @@
+{
+  package.json
+  package-lock.json
+  dist
+  .angular.json
+  /.cicd
+  /.vscode
+  /.idea
+  /.ionic
+  /public
+  /.iac
+}
