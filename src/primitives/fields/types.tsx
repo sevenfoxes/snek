@@ -1,3 +1,5 @@
-export interface Field {
-  formKey: string;
+export interface Field { }
+export interface FormField {
+  field: string;
+  value: any;
 }

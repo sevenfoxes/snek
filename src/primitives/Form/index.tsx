@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { useForm } from "@hooks/useForm";
 import { Button } from "@primitives";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useContext } from "react";
+import { FormContext, FormProvider } from './FormContext';
 
 interface FormProps {
   formIndex: string;
@@ -26,15 +27,17 @@ const Footer = styled('div')(() => ({
 }));
 
 export const Form: FC<FormProps> = ({ children, resetText = 'reset', submitText = 'submit', formIndex }) => {
-  const { resetForm, submitForm } = useForm(formIndex, children);
+  const { resetForm, submitForm } = useForm(formIndex);
 
   return (
-    <Root>
-      {children}
-      <Footer>
-        <Button name={'reset-form'} onClick={resetForm}>{resetText}</Button>
-        <Button name={'submit-form'} onClick={submitForm}>{submitText}</Button>
-      </Footer>
-    </Root>
+    <FormProvider value={formIndex}>
+      <Root>
+        {children}
+        <Footer>
+          <Button name={'reset-form'} onClick={resetForm}>{resetText}</Button>
+          <Button name={'submit-form'} onClick={submitForm}>{submitText}</Button>
+        </Footer>
+      </Root>
+    </FormProvider>
   )
 }

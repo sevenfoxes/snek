@@ -17,8 +17,8 @@ const App: FC = () => {
         formIndex={formKey}
         onSubmit={handleSubmit}
       >
-        <FirstName formKey={formKey} />
-        <LastName formKey={formKey} />
+        <FirstName />
+        <LastName />
       </Form>
     </Box>
   );
