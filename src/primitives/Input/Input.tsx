@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect } from 'react';
-import { TextField, TextFieldProps } from '@mui/material';
+import { Box, TextField, TextFieldProps } from '@mui/material';
 import { useField } from '@hooks/useField';
 import { FormContext } from '@primitives/Form/FormContext';
 import { useSetRecoilState } from 'recoil';
@@ -28,9 +28,9 @@ export const Input: FC<InputProps> = ({ name, label }) => {
   }, []);
 
   return (
-    <div>
+    <Box sx={{ marginBottom: '1rem' }}>
       <TextField label={label} value={value} onChange={updateField} fullWidth />
       {!!error && <InputError inputName={name} />}
-    </div>
+    </Box>
   )
 }

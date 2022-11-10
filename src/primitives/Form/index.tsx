@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 import { useForm } from "@hooks/useForm";
 import { Button } from "@primitives";
-import { Children, FC, ReactNode, useContext, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { formFieldsState } from "src/shared/state";
-import { FormContext, FormProvider } from './FormContext';
+import { FC, ReactNode } from "react";
+import { FormProvider } from './FormContext';
 
 interface FormProps {
   formIndex: string;
@@ -15,9 +13,7 @@ interface FormProps {
 }
 
 const Root = styled('form')(() => ({
-  '.MuiFormControl-root + .MuiFormControl-root': {
-    marginTop: '1rem'
-  }
+
 }));
 
 const Footer = styled('div')(() => ({
