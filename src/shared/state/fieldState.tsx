@@ -1,4 +1,5 @@
 import { atomFamily, selectorFamily } from "recoil";
+import { formFieldsState } from "./formState";
 
 export const fieldErrorState = atomFamily({
   key: 'fieldErrorState',
@@ -22,12 +23,12 @@ export const fieldSelector = selectorFamily({
     const userValue = get(fieldUserState(id));
     const error = get(fieldErrorState(id));
 
-    console.log({
-      value: !!userValue ? userValue : value,
-      userValue,
-      error,
-      charCount: !!userValue ? userValue.length : value.length
-    });
+    // console.log({
+    //   value: !!userValue ? userValue : value,
+    //   userValue,
+    //   error,
+    //   charCount: !!userValue ? userValue.length : value.length
+    // });
 
     return {
       value: !!userValue ? userValue : value,
@@ -36,8 +37,9 @@ export const fieldSelector = selectorFamily({
       charCount: !!userValue ? userValue.length : value.length
     }
   },
-  set: (key: string) => ({ set }, userInput: any) => {
-    console.log(key);
-    set(fieldUserState(key), userInput.currentTarget.value);
+  set: (key: string) => ({ set, get }, { field, formKey }: any) => {
+    const form = get(formFieldsState(formKey))
+    set(fieldUserState(key), field);
+    set(formFieldsState(formKey), { ...form, [key]: field });
   }
 })

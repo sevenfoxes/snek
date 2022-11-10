@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { useForm } from "@hooks/useForm";
 import { Button } from "@primitives";
-import { FC, ReactNode, useContext } from "react";
+import { Children, FC, ReactNode, useContext, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { formFieldsState } from "src/shared/state";
 import { FormContext, FormProvider } from './FormContext';
 
 interface FormProps {

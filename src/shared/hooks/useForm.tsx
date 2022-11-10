@@ -3,12 +3,12 @@ import { useRecoilCallback, useRecoilState } from "recoil";
 import { fieldSelector, fieldState, formSelector } from "../state";
 
 export const useForm = (formId) => {
-  const [{ fields, fieldValues, getFieldsAndValues }, setForm] = useRecoilState(formSelector(formId));
+  const [{ fields }, setForm] = useRecoilState(formSelector(formId));
   const resetForm = () => null;
 
   const submitForm = async () => {
     console.log('do a submit');
-    console.log({ fieldValues, getFieldsAndValues: await getFieldsAndValues() });
+    console.log({ fields });
   }
 
   return {
